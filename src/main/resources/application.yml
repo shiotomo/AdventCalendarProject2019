@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:h2:./h2db/advent_calendar_project
+    username: advent_calendar_project
+    password: advent_calendar_project
+    driverClassName: org.h2.Driver
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true

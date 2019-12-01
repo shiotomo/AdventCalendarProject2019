@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>AdventCalendarProject</title>
+</head>
+<body>
+  <h1>AdventCalandarProject</h1>
+  <label>登録</label>
+  <form th:method="POST" th:action="@{/memos}">
+    <input type="text" name="body" />
+    <input type="submit" value="登録" />
+  </form>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>内容</th>
+      <th>作成日</th>
+      <th>更新日</th>
+      <th>更新</th>
+      <th>削除</th>
+    </tr>
+    <tr th:each="memo: ${memoList}">
+      <td th:text="${memo.getId()}"></td>
+      <td th:text="${memo.getBody()}"></td>
+      <td th:text="${memo.getCreatedAt()}"></td>
+      <td th:text="${memo.getUpdatedAt()}"></td>
+      <td>
+        <form th:method="PUT" th:action="@{'/memos/' + ${memo.getId()}}">
+          <input type="text" name="body" th:value="${memo.getBody()}" />
+          <input type="submit" value="更新" />
+        </form>
+      </td>
+      <td>
+        <form th:method="DELETE" th:action="@{'/memos/' + ${memo.getId()}}">
+          <input type="submit" value="削除" />
+        </form>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
